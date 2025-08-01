@@ -1,0 +1,72 @@
+/* Apply pixelated font across the page */
+body {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Optional: Make images appear pixelated when scaled */
+img {
+  image-rendering: pixelated;
+}
+
+/* Optional: Smooth scrolling and spacing tweaks */
+html {
+  scroll-behavior: smooth;
+  background-color: #111;
+  color: #eee;
+}
+body {
+  font-family: 'Press Start 2P', sans-serif;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+h1, h2, p {
+  text-align: center;
+}
+
+.name-frame {
+  margin-bottom: 40px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  margin: 40px 0;
+}
+
+.carousel, .carousel-icons {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  gap: 20px;
+  justify-content: center;
+}
+
+.carousel img, .carousel-icons img {
+  width: 200px;
+  height: auto;
+  border: 2px solid #fff;
+  border-radius: 8px;
+}
+
+.spacer-text {
+  margin: 40px 0;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 14px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
