@@ -1,41 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>aray koh</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Centered Poem with Music and Image</title>
   <style>
-    body {
-      background-color: black;
-      color: white; /* makes text visible on black */
+    html, body {
+      height: 100%;
       margin: 0;
-      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .poem {
+      flex: 1;
       text-align: center;
-      padding: 20px;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    iframe {
+      flex: 1;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .image-container img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    @media (min-width: 900px) {
+      .poem { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <h1></h1>
+  <div class="content">
+    <div class="poem">Now, I’m the one
+who needs to heal.
+I’m trying to find peace
+in the quiet you left behind.
+And even then,
+I cherish every moment that you’re still there.
+Even when it felt like you were slipping away,
+I held on to every second with you.
+You deserve to be loved,
+gently, truly,
+no matter your past.
+And I tried to be that love.</div>
 
-  <audio id="bg-music" loop>
-    <source src="your-song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+    <iframe data-testid="embed-iframe" src="https://open.spotify.com/embed/track/05n2XWv0UZmW7OloRKKpTk?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
 
-  <iframe data-testid="embed-iframe"
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/track/05n2XWv0UZmW7OloRKKpTk?utm_source=generator"
-          width="100%" height="352" frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-  </iframe>
-
-  <script>
-    document.addEventListener("click", function () {
-      document.getElementById("bg-music").play();
-    }, { once: true });
-  </script>
-
+  <div class="image-container">
+    <img src="floodcontrol.jpg" alt="gingineer" />
+  </div>
 </body>
 </html>
-
