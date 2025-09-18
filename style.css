@@ -1,16 +1,13 @@
-/* Apply pixelated font across the page */
 body {
   font-family: 'Press Start 2P', monospace;
   font-size: 12px;
   line-height: 1.5;
 }
 
-/* Optional: Make images appear pixelated when scaled */
 img {
   image-rendering: pixelated;
 }
 
-/* Optional: Smooth scrolling and spacing tweaks */
 html {
   scroll-behavior: smooth;
   background-color: #111;
@@ -69,4 +66,5 @@ footer {
   100% {
     transform: translateX(-100%);
   }
+
 }
