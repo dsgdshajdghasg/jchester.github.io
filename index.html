@@ -3,153 +3,91 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>index</title>
+  <title>7-Day Countdown</title>
   <style>
-    :root{
-      --bg:#000;
-      --text:#fff;
-      --muted:rgba(255,255,255,0.65);
-    }
-    html,body{
-      height:100%;
+    body {
       margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:20px;
-      box-sizing:border-box;
-    }
-
-    .card{
+      background:#000;
+      color:#fff;
+      font-family:sans-serif;
       text-align:center;
-      max-width:920px;
-      width:100%;
+      flex-direction: column;
     }
-
-    h1{
-      margin:0 0 20px 0;
-      font-size:clamp(18px,3.5vw,36px);
-      font-weight:600;
-      color:var(--text);
-      letter-spacing:0.2px;
-    }
-
-    .countdown {
-      display:flex;
-      gap:16px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .time-box{
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      padding:18px 22px;
-      border-radius:12px;
-      min-width:100px;
-      box-sizing:border-box;
-      text-align:center;
-    }
-
-    .num{
-      font-size:clamp(28px,6vw,64px);
-      font-weight:700;
-      line-height:1;
-      color:var(--text);
-    }
-
-    .label{
-      margin-top:8px;
-      font-size:clamp(12px,2vw,16px);
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:1px;
-    }
-
+    .countdown { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+    .time-box { padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.1); min-width:90px; }
+    .num { font-size:48px; font-weight:700; }
+    .label { margin-top:8px; font-size:14px; text-transform:uppercase; }
     .ended {
-      margin-top:18px;
+      margin-top:20px;
       color:#ffb4b4;
-      font-weight:600;
-      font-size:clamp(14px,2.2vw,18px);
+      font-weight:bold;
+      font-size:20px;
+      line-height:1.6;
+      display:none;
+      animation: fadeIn 3s ease forwards;
     }
-
-    @media (max-width:420px){
-      .time-box { padding:12px 14px; min-width:72px; }
-      .num { font-size:32px; }
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="card" role="region" aria-label="7 day countdown">
+  <div>
     <h1>siguro nga wala na talagang pag-asa</h1>
-
-    <div id="countdown" class="countdown" aria-live="polite">
-      <div class="time-box">
-        <div id="days" class="num">7</div>
-        <div class="label">Days</div>
-      </div>
-
-      <div class="time-box">
-        <div id="hours" class="num">00</div>
-        <div class="label">Hours</div>
-      </div>
-
-      <div class="time-box">
-        <div id="minutes" class="num">00</div>
-        <div class="label">Minutes</div>
-      </div>
-
-      <div class="time-box">
-        <div id="seconds" class="num">00</div>
-        <div class="label">Seconds</div>
-      </div>
+    <div id="countdown" class="countdown">
+      <div class="time-box"><div id="days" class="num">0</div><div class="label">Days</div></div>
+      <div class="time-box"><div id="hours" class="num">00</div><div class="label">Hours</div></div>
+      <div class="time-box"><div id="minutes" class="num">00</div><div class="label">Minutes</div></div>
+      <div class="time-box"><div id="seconds" class="num">00</div><div class="label">Seconds</div></div>
     </div>
 
-    <div id="finalMessage" class="ended" style="display:none;">
-      Oras na. — nag-expire na ang countdown.
+    <div id="finalMessage" class="ended">
+      i loved you, i cared for you, i accepted who you are, and i was willing to grow with you.<br>
+      i thought i gave you everything, but i guess it was never enough for you.<br>
+      and what hurts most is knowing that while i was fighting for us,<br>
+      you were already letting go.<br>
+      one day, when the noise fades and the people leave,<br>
+      you’ll remember the love that stayed—<br>
+      and realize it was me all along.<br><br>
+      i can wait as long as your heart is healed,<br>
+      but i know i have no right over you—we were nothing in the first place.<br>
+      <i>i just can’t accept that while i was waiting for you,<br>
+      you were already talking to someone else.</i>
     </div>
   </div>
 
   <script>
-    // Set target to exactly 7 days from now
-    const now = new Date();
-    const target = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const target = new Date("Sep 28, 2025 00:00:00").getTime();
 
-    const elDays = document.getElementById('days');
-    const elHours = document.getElementById('hours');
-    const elMinutes = document.getElementById('minutes');
-    const elSeconds = document.getElementById('seconds');
-    const finalMessage = document.getElementById('finalMessage');
-    const countdownContainer = document.getElementById('countdown');
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+    const finalMessage = document.getElementById("finalMessage");
+    const countdownContainer = document.getElementById("countdown");
 
-    function pad(n){ return String(n).padStart(2,'0'); }
+    function pad(n){ return String(n).padStart(2,"0"); }
 
-    function update(){
-      const now = new Date();
+    function update() {
+      const now = new Date().getTime();
       const diff = target - now;
 
       if (diff <= 0) {
-        // Countdown finished
-        elDays.textContent = '00';
-        elHours.textContent = '00';
-        elMinutes.textContent = '00';
-        elSeconds.textContent = '00';
-        countdownContainer.style.display = 'none';
-        finalMessage.style.display = 'block';
+        countdownContainer.style.display = "none";
+        finalMessage.style.display = "block";
         clearInterval(timer);
         return;
       }
 
-      const secondsTotal = Math.floor(diff / 1000);
-      const days = Math.floor(secondsTotal / (24 * 3600));
-      const hours = Math.floor((secondsTotal % (24 * 3600)) / 3600);
-      const minutes = Math.floor((secondsTotal % 3600) / 60);
-      const seconds = secondsTotal % 60;
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((diff % (1000*60)) / 1000);
 
       elDays.textContent = days;
       elHours.textContent = pad(hours);
@@ -157,7 +95,6 @@
       elSeconds.textContent = pad(seconds);
     }
 
-    // Initial update and then every second
     update();
     const timer = setInterval(update, 1000);
   </script>
