@@ -1,39 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="tl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>index</title>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: black;
-      color: white;
-      font-size: 28px;
-      font-family: Arial, sans-serif;
-      text-align: center;
+    :root{
+      --bg:#000;
+      --text:#fff;
+      --muted:rgba(255,255,255,0.65);
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      text-align:center;
+      max-width:920px;
+      width:100%;
+    }
+
+    h1{
+      margin:0 0 20px 0;
+      font-size:clamp(18px,3.5vw,36px);
+      font-weight:600;
+      color:var(--text);
+      letter-spacing:0.2px;
+    }
+
+    .countdown {
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .time-box{
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding:18px 22px;
+      border-radius:12px;
+      min-width:100px;
+      box-sizing:border-box;
+      text-align:center;
+    }
+
+    .num{
+      font-size:clamp(28px,6vw,64px);
+      font-weight:700;
+      line-height:1;
+      color:var(--text);
+    }
+
+    .label{
+      margin-top:8px;
+      font-size:clamp(12px,2vw,16px);
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .ended {
+      margin-top:18px;
+      color:#ffb4b4;
+      font-weight:600;
+      font-size:clamp(14px,2.2vw,18px);
+    }
+
+    @media (max-width:420px){
+      .time-box { padding:12px 14px; min-width:72px; }
+      .num { font-size:32px; }
     }
   </style>
 </head>
 <body>
-  <div>
-     “If you already have someone else in your life, I’ll walk away, make sure I never see you again, and I won’t ever force myself on you. 
-    <br>
-    You already made your choice — I can’t do anything.”
-  </br>
-    <br>
-    -sinabi ni corey yan??
-  </br>
-    
+  <div class="card" role="region" aria-label="7 day countdown">
+    <h1>siguro nga wala na talagang pag-asa</h1>
 
+    <div id="countdown" class="countdown" aria-live="polite">
+      <div class="time-box">
+        <div id="days" class="num">7</div>
+        <div class="label">Days</div>
+      </div>
+
+      <div class="time-box">
+        <div id="hours" class="num">00</div>
+        <div class="label">Hours</div>
+      </div>
+
+      <div class="time-box">
+        <div id="minutes" class="num">00</div>
+        <div class="label">Minutes</div>
+      </div>
+
+      <div class="time-box">
+        <div id="seconds" class="num">00</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+
+    <div id="finalMessage" class="ended" style="display:none;">
+      Oras na. — nag-expire na ang countdown.
+    </div>
   </div>
+
+  <script>
+    // Set target to exactly 7 days from now
+    const now = new Date();
+    const target = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+    const elDays = document.getElementById('days');
+    const elHours = document.getElementById('hours');
+    const elMinutes = document.getElementById('minutes');
+    const elSeconds = document.getElementById('seconds');
+    const finalMessage = document.getElementById('finalMessage');
+    const countdownContainer = document.getElementById('countdown');
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    function update(){
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        // Countdown finished
+        elDays.textContent = '00';
+        elHours.textContent = '00';
+        elMinutes.textContent = '00';
+        elSeconds.textContent = '00';
+        countdownContainer.style.display = 'none';
+        finalMessage.style.display = 'block';
+        clearInterval(timer);
+        return;
+      }
+
+      const secondsTotal = Math.floor(diff / 1000);
+      const days = Math.floor(secondsTotal / (24 * 3600));
+      const hours = Math.floor((secondsTotal % (24 * 3600)) / 3600);
+      const minutes = Math.floor((secondsTotal % 3600) / 60);
+      const seconds = secondsTotal % 60;
+
+      elDays.textContent = days;
+      elHours.textContent = pad(hours);
+      elMinutes.textContent = pad(minutes);
+      elSeconds.textContent = pad(seconds);
+    }
+
+    // Initial update and then every second
+    update();
+    const timer = setInterval(update, 1000);
+  </script>
 </body>
 </html>
-
-
-
-
-
