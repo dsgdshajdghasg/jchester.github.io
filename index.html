@@ -30,6 +30,20 @@
       display:none;
       animation: fadeIn 3s ease forwards;
     }
+    .frame {
+      margin:20px 0;
+      padding:10px;
+      border:5px solid #fff;
+      border-radius:12px;
+      box-shadow:0 0 20px rgba(255,255,255,0.3);
+      display:inline-block;
+    }
+    .frame img {
+      width:500px;      
+      height:auto;      
+      border-radius:8px;
+      display:block;
+    }
     @keyframes fadeIn {
       from { opacity:0; transform:translateY(20px); }
       to { opacity:1; transform:translateY(0); }
@@ -39,6 +53,11 @@
 <body>
   <div>
     <h1>siguro nga wala na talagang pag-asa</h1>
+    
+    <div class="frame">
+      <img src="548211125_806557545059842_5208768329705771812_n.png" alt="Framed Picture">
+    </div>
+    
     <div id="countdown" class="countdown">
       <div class="time-box"><div id="days" class="num">0</div><div class="label">Days</div></div>
       <div class="time-box"><div id="hours" class="num">00</div><div class="label">Hours</div></div>
@@ -62,7 +81,6 @@
   </div>
 
   <script>
-   
     const target = new Date("October 25, 2025 00:00:00").getTime();
 
     const elDays = document.getElementById("days");
@@ -101,5 +119,3 @@
   </script>
 </body>
 </html>
-
-
