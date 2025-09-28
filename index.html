@@ -17,12 +17,21 @@
       text-align:center;
       flex-direction: column;
     }
-    .countdown { 
-      display:none; /*hidden*/
-      gap:16px; 
-      flex-wrap:wrap; 
-      justify-content:center; 
+    h1 a {
+      color:#fff;
+      text-decoration:none;
+      transition: all 0.3s ease;
     }
+    h1 a:hover {
+      color:#ffb4b4;
+      text-decoration:underline;
+    }
+    .countdown {
+       display:none; /*hidden*/
+      gap:16px;
+       flex-wrap:wrap;
+       justify-content:center;
+     }
     .time-box { padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.1); min-width:90px; }
     .num { font-size:48px; font-weight:700; }
     .label { margin-top:8px; font-size:14px; text-transform:uppercase; }
@@ -44,8 +53,8 @@
       display:inline-block;
     }
     .frame img {
-      width:500px;      
-      height:auto;      
+      width:500px;
+      height:auto;
       border-radius:8px;
       display:block;
     }
@@ -57,13 +66,16 @@
 </head>
 <body>
   <div>
-    <h1>wala na nga siguro talaga nalukona
-</h1>
-    
+    <h1>
+      <a href="https://docs.google.com/document/d/1CbktQYIPx_mPHAE90Hw9_D3xB9NlFs1qUjz4BnJuSkU/edit?tab=t.0" target="_blank">
+        wala na nga siguro talaga nalukona
+      </a>
+    </h1>
+
     <div class="frame">
       <img src="42342425662.png" alt="Framed Picture">
     </div>
-    
+
     <div id="countdown" class="countdown">
       <div class="time-box"><div id="days" class="num">0</div><div class="label">Days</div></div>
       <div class="time-box"><div id="hours" class="num">00</div><div class="label">Hours</div></div>
@@ -125,5 +137,3 @@
   </script>
 </body>
 </html>
-
-
