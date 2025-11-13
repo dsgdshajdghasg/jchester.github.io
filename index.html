@@ -1,131 +1,38 @@
 <!doctype html>
-<html lang="tl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>nalukona</title>
+  <title>:(</title>
   <style>
     body {
-      margin:0;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#000;
-      color:#fff;
-      font-family:sans-serif;
-      text-align:center;
+      margin: 0;
+      height: 100vh;
+      display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
-    h1 a {
-      color:#fff;
-      text-decoration:none;
-      transition: all 0.3s ease;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
     }
-    h1 a:hover {
-      color:#ffb4b4;
-      text-decoration:underline;
-    }
-    .countdown {
-       display:none; /*hidden*/
-      gap:16px;
-       flex-wrap:wrap;
-       justify-content:center;
-     }
-    .time-box { padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.1); min-width:90px; }
-    .num { font-size:48px; font-weight:700; }
-    .label { margin-top:8px; font-size:14px; text-transform:uppercase; }
-    .ended {
-      margin-top:20px;
-      color:#ffb4b4;
-      font-weight:bold;
-      font-size:20px;
-      line-height:1.6;
-      display:none;
-      animation: fadeIn 3s ease forwards;
-    }
-    .frame {
-      margin:20px 0;
-      padding:10px;
-      border:5px solid #fff;
-      border-radius:12px;
-      box-shadow:0 0 20px rgba(255,255,255,0.3);
-      display:inline-block;
-    }
-    .frame img {
-      width:500px;
-      height:auto;
-      border-radius:8px;
-      display:block;
-    }
-    @keyframes fadeIn {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
+    iframe {
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      height: 352px;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>
-   
-    </h1>
-
-    <div class="frame">
-      <img src="42342425662.png" alt="Framed Picture">
-    </div>
-
-    <div id="countdown" class="countdown">
-      <div class="time-box"><div id="days" class="num">0</div><div class="label">Days</div></div>
-      <div class="time-box"><div id="hours" class="num">00</div><div class="label">Hours</div></div>
-      <div class="time-box"><div id="minutes" class="num">00</div><div class="label">Minutes</div></div>
-      <div class="time-box"><div id="seconds" class="num">00</div><div class="label">Seconds</div></div>
-    </div>
-
-    <div id="finalMessage" class="ended">
-     Where are you, where am I, and where did we go?</i>
-    </div>
-  </div>
-
-  <script>
-    const target = new Date("October 25, 2025 00:00:00").getTime();
-
-    const elDays = document.getElementById("days");
-    const elHours = document.getElementById("hours");
-    const elMinutes = document.getElementById("minutes");
-    const elSeconds = document.getElementById("seconds");
-    const finalMessage = document.getElementById("finalMessage");
-    const countdownContainer = document.getElementById("countdown");
-
-    function pad(n){ return String(n).padStart(2,"0"); }
-
-    function update() {
-      const now = new Date().getTime();
-      const diff = target - now;
-
-      if (diff <= 0) {
-        countdownContainer.style.display = "none";
-        finalMessage.style.display = "block";
-        clearInterval(timer);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-      const seconds = Math.floor((diff % (1000*60)) / 1000);
-
-      elDays.textContent = days;
-      elHours.textContent = pad(hours);
-      elMinutes.textContent = pad(minutes);
-      elSeconds.textContent = pad(seconds);
-    }
-
-    update();
-    const timer = setInterval(update, 1000);
-  </script>
+  <h1>Where are you, where am I, and where did we go?</h1>
+  <iframe src="https://open.spotify.com/embed/track/05n2XWv0UZmW7OloRKKpTk?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </body>
 </html>
-
-
-
-
